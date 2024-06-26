@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import api from '../api';
 
-const TaskForm = ({ fetchTasks }) => {
+const TaskForm = ({ setIsUpdated }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -11,7 +11,7 @@ const TaskForm = ({ fetchTasks }) => {
       await api.post('/tasks', { title, description });
       setTitle('');
       setDescription('');
-      fetchTasks();
+      setIsUpdated(true);
     } catch (error) {
       console.error('Failed to add task', error);
     }
